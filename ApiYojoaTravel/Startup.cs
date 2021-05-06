@@ -1,4 +1,5 @@
 using ApiYojoaTravel.DataContext;
+using ApiYojoaTravel.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,13 +29,13 @@ namespace ApiYojoaTravel
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ApiDataContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc().AddNewtonsoftJson(option => option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-            // services.AddControllers();
-            // services.AddSwaggerGen(c =>
-            // {
-            //     c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiYojoaTravel", Version = "v1" });
-            // });
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiYojoaTravel", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
