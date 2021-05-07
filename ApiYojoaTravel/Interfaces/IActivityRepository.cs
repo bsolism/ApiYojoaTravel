@@ -7,7 +7,7 @@ namespace ApiYojoaTravel.Interfaces
     public interface IActivityRepository
     {
         Task<IEnumerable<Activity>> GetActivity();
-        void AddActivity(Activity activity);
+        Task<bool> AddActivity(Activity activity);
         void DeleteActivity(int activityId);
         Task UpdateActivity(Activity activity);
         Task<Activity> FindActivity(int activityId);

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ApiYojoaTravel.DomainService;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
 using Microsoft.EntityFrameworkCore;
@@ -9,18 +10,27 @@ namespace ApiYojoaTravel.DataContext.Repo
     public class ActivityRepository : IActivityRepository
     {
         private readonly ApiDataContext dc;
+        private readonly ActivityDomainService activityDomainService;
 
-        public ActivityRepository(ApiDataContext dc)
+        public ActivityRepository(ApiDataContext dc, ActivityDomainService activityDomainService)
         {
+            this.activityDomainService = activityDomainService;
             this.dc = dc;
         }
         public async Task<IEnumerable<Activity>> GetActivity()
         {
             return await dc.Activity.ToListAsync();
         }
-        public void AddActivity(Activity activity)
+        public async Task<bool> AddActivity(Activity activity)
         {
-            dc.Activity.AddAsync(activity);
+            bool isRequired = activityDomainService.PostActivity(activity);
+            if (isRequired)
+            {
+                return isRequired;
+            }
+            dc.Activity.Add(activity);
+            await dc.SaveChangesAsync();
+            return false;
         }
         public void DeleteActivity(int activityId)
         {

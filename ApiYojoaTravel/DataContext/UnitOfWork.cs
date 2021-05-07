@@ -1,6 +1,7 @@
 using System.Data.Common;
 using System.Threading.Tasks;
 using ApiYojoaTravel.DataContext.Repo;
+using ApiYojoaTravel.DomainService;
 using ApiYojoaTravel.Interfaces;
 
 namespace ApiYojoaTravel.DataContext
@@ -8,13 +9,15 @@ namespace ApiYojoaTravel.DataContext
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApiDataContext dc;
-        public UnitOfWork(ApiDataContext dc)
+        private readonly ActivityDomainService activityDomainService;
+        public UnitOfWork(ApiDataContext dc, ActivityDomainService activityDomainService)
         {
+            this.activityDomainService = activityDomainService;
             this.dc = dc;
 
         }
         public IActivityRepository ActivityRepository =>
-        new ActivityRepository(dc);
+        new ActivityRepository(dc, activityDomainService);
         public IBookingRepository BookingRepository =>
         new BookingRepository(dc);
         public ICategoryRepository CategoryRepository =>
