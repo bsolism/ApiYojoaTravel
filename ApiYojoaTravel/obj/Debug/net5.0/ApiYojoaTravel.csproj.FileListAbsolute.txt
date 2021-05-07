@@ -11,7 +11,6 @@ C:\Users\Bernardo Solis\source\repos\ApiYojoaTravel\ApiYojoaTravel\bin\Debug\net
 C:\Users\Bernardo Solis\source\repos\ApiYojoaTravel\ApiYojoaTravel\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Bernardo Solis\source\repos\ApiYojoaTravel\ApiYojoaTravel\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Bernardo Solis\source\repos\ApiYojoaTravel\ApiYojoaTravel\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\Bernardo Solis\source\repos\ApiYojoaTravel\ApiYojoaTravel\obj\Debug\net5.0\ApiYojoaTravel.csprojAssemblyReference.cache
 C:\Users\Bernardo Solis\source\repos\ApiYojoaTravel\ApiYojoaTravel\obj\Debug\net5.0\ApiYojoaTravel.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Bernardo Solis\source\repos\ApiYojoaTravel\ApiYojoaTravel\obj\Debug\net5.0\ApiYojoaTravel.AssemblyInfoInputs.cache
 C:\Users\Bernardo Solis\source\repos\ApiYojoaTravel\ApiYojoaTravel\obj\Debug\net5.0\ApiYojoaTravel.AssemblyInfo.cs
