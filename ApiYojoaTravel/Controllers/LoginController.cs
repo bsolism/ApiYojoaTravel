@@ -22,7 +22,7 @@ namespace ApiYojoaTravel.Controllers
             this.loginApplicationServices = loginApplicationServices;
         }
 
-        [HttpPost("login")]
+        [HttpPost]
         public async Task<IActionResult> Login(LoginReqDTO loginReqDTO)
         {
             var login = await loginApplicationServices.Login(loginReqDTO);
