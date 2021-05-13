@@ -14,6 +14,8 @@ namespace ApiYojoaTravel.Interfaces
         IPackageByActivityRepository PackageByActivityRepository { get; }
         IPackageByCategoryRepository PackageByCategoryRepository { get; }
         IPolicyRepository PolicyRepository { get; }
+        IUserApplication UserApplication { get; }
+        
 
         Task<bool> SaveAsync();
     }

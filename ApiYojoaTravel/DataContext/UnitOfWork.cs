@@ -1,5 +1,6 @@
 using System.Data.Common;
 using System.Threading.Tasks;
+using ApiYojoaTravel.ApplicationServices;
 using ApiYojoaTravel.DataContext.Repo;
 using ApiYojoaTravel.DomainService;
 using ApiYojoaTravel.Interfaces;
@@ -34,6 +35,9 @@ namespace ApiYojoaTravel.DataContext
         new PackageByCategoryRepository(dc);
         public IPolicyRepository PolicyRepository =>
         new PolicyRepository(dc);
+        public IUserApplication UserApplication =>
+            new UserApplicationServices(dc);
+        
 
         public async Task<bool> SaveAsync()
         {
