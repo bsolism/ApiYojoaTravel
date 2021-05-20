@@ -1,8 +1,7 @@
-using System.Data.Common;
 using System.Threading.Tasks;
 using ApiYojoaTravel.ApplicationServices;
-using ApiYojoaTravel.DataContext.Repo;
 using ApiYojoaTravel.DomainService;
+using ApiYojoaTravel.DTO;
 using ApiYojoaTravel.Interfaces;
 
 namespace ApiYojoaTravel.DataContext
@@ -10,34 +9,39 @@ namespace ApiYojoaTravel.DataContext
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApiDataContext dc;
-        private readonly ActivityDomainService activityDomainService;
-        public UnitOfWork(ApiDataContext dc, ActivityDomainService activityDomainService)
+        private readonly IDomainUnitOfWork uow;
+        private readonly LoginResDTO loginResDTO;
+
+        public UnitOfWork(ApiDataContext dc, IDomainUnitOfWork uow, LoginResDTO loginResDTO)
         {
-            this.activityDomainService = activityDomainService;
+            this.uow = uow;
+            this.loginResDTO = loginResDTO;
             this.dc = dc;
 
         }
-        public IActivityRepository ActivityRepository =>
-        new ActivityRepository(dc, activityDomainService);
-        public IBookingRepository BookingRepository =>
-        new BookingRepository(dc);
-        public ICategoryRepository CategoryRepository =>
-        new CategoryRepository(dc);
-        public IClassificationRepository ClassificationRepository =>
-        new ClassificationRepository(dc);
-        public IClientRepository ClientRepository =>
-        new ClientRepository(dc);
-        public IPackageRepository PackageRepository =>
-        new PackageRepository(dc);
-        public IPackageByActivityRepository PackageByActivityRepository =>
-        new PackageByActivityRepository(dc);
-        public IPackageByCategoryRepository PackageByCategoryRepository =>
-        new PackageByCategoryRepository(dc);
-        public IPolicyRepository PolicyRepository =>
-        new PolicyRepository(dc);
+        public IBookingApplication BookingApplication =>
+        new BookingApplication(dc, uow);
+        public ICategoryApplication CategoryApplication =>
+        new CategoryApplication(dc, uow);
+        public IClassificationApplication ClassificationApplication =>
+        new ClassificationApplication(dc, uow);
+        public IClientApplication ClientApplication =>
+        new ClientApplication(dc, uow);
+        public IPackageApplication PackageApplication =>
+        new PackageApplication(dc, uow);
+        public IPackageByActivityApplication PackageByActivityApplication =>
+        new PackageByActivityApplication(dc, uow);
+        public IPackageByCategoryApplication PackageByCategoryApplication =>
+        new PackageByCategoryApplication(dc, uow);
+        public IPolicyApplication PolicyApplication =>
+        new PolicyApplication(dc, uow);
         public IUserApplication UserApplication =>
-            new UserApplicationServices(dc);
-        
+        new UserApplicationServices(dc);
+        public IActivityApplication ActivityApplication =>
+        new ActivityApplication(dc, uow);
+        public ILoginApplication LoginApplication =>
+        new LoginApplication(loginResDTO, uow);
+
 
         public async Task<bool> SaveAsync()
         {

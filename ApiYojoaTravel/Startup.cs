@@ -1,4 +1,3 @@
-using ApiYojoaTravel.ApplicationServices;
 using ApiYojoaTravel.DataContext;
 using ApiYojoaTravel.DomainService;
 using ApiYojoaTravel.DTO;
@@ -36,13 +35,10 @@ namespace ApiYojoaTravel
         public void ConfigureServices(IServiceCollection services)
         {
             
-            services.AddScoped<LoginReqDTO>();
-            services.AddScoped<CreateToken>();
-            services.AddScoped<User>();
-            services.AddScoped<ActivityDomainService>();
-            services.AddScoped<LoginResDTO>();
-            services.AddScoped<LoginApplicationServices>();
+            
             services.AddScoped<ApiDataContext>();
+            services.AddScoped<LoginResDTO>();
+            services.AddScoped<IDomainUnitOfWork, DomainUnitOfWork>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc().AddNewtonsoftJson(option => option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddControllers();

@@ -1,20 +1,21 @@
-using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace ApiYojoaTravel.Interfaces
 {
     public interface IUnitOfWork
     {
-        IActivityRepository ActivityRepository { get; }
-        IBookingRepository BookingRepository { get; }
-        ICategoryRepository CategoryRepository { get; }
-        IClassificationRepository ClassificationRepository { get; }
-        IClientRepository ClientRepository { get; }
-        IPackageRepository PackageRepository { get; }
-        IPackageByActivityRepository PackageByActivityRepository { get; }
-        IPackageByCategoryRepository PackageByCategoryRepository { get; }
-        IPolicyRepository PolicyRepository { get; }
+        IBookingApplication BookingApplication { get; }
+        ICategoryApplication CategoryApplication { get; }
+        IClassificationApplication ClassificationApplication { get; }
+        IClientApplication ClientApplication { get; }
+        IPackageApplication PackageApplication { get; }
+        IPackageByActivityApplication PackageByActivityApplication { get; }
+        IPackageByCategoryApplication PackageByCategoryApplication { get; }
+        IPolicyApplication PolicyApplication { get; }
         IUserApplication UserApplication { get; }
+        IActivityApplication ActivityApplication { get; }
+        ILoginApplication LoginApplication { get; }
+
         
 
         Task<bool> SaveAsync();

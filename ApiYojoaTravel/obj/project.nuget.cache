@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "i8R0Ge/NFpxjzpE4wBOmYN0uMmwbfH69EqecZppkze5bZxZx1r1CGV4DnueLXbpNNdsd0EkubpijZLwh6ErUKw==",
+  "dgSpecHash": "4zSGehBVuSW1Fr9yXahkI7JKs7mOE4TiNVH/do7LBqtCKfcNhvA5unLMyMAp9IL4Noq46utO+NhMzu93oA0/8g==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
+  "projectFilePath": "C:\\Users\\Bernardo Solis\\Desktop\\Clases\\Vanguardia\\Proyecto_Calse\\Backend\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bernardo Solis\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Bernardo Solis\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.6\\microsoft.aspnetcore.authentication.jwtbearer.5.0.6.nupkg.sha512",

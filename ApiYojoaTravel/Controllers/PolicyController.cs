@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
@@ -13,42 +14,47 @@ namespace ApiYojoaTravel.Controllers
             this.uow = uow;
 
         }
-        [HttpGet]
-        public async Task<IActionResult> GetPolicy()
+         [HttpGet]
+        public Task<IEnumerable<Policy>> GetPolicy()
         {
-            var Policy = await uow.PolicyRepository.GetPolicy();
-            return Ok(Policy);
+            return uow.PolicyApplication.GetPolicy();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Policy>> GetPolicyById(int policyId)
+        public Task<ActionResult<Policy>> GetById(int id)
         {
-            return await uow.PolicyRepository.FindPolicy(policyId);
+            var policy = uow.PolicyApplication.FindPolicy(id);
+            return policy;
         }
         [HttpPost]
         public async Task<IActionResult> AddPolicy(Policy policy)
         {
-            uow.PolicyRepository.AddPolicy(policy);
-            await uow.SaveAsync();
-            return StatusCode(201);
+            var activit = await uow.PolicyApplication.AddPolicy(policy);
+            if (activit == null)
+            {
+                return BadRequest();
+            }
+            return Ok(activit);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePolicy(int id, Policy policy)
         {
-            if (id != policy.PolicyId)
+            var Policy = await uow.PolicyApplication.UpdatePolicy(id, policy);
+            if (Policy == null)
+            {
+                return BadRequest();
+
+            }
+            return StatusCode(201);           
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePolicy(int id)
+        {
+            var Policy = await uow.PolicyApplication.DeletePolicy(id);
+            if (Policy == null)
             {
                 return BadRequest();
             }
-            await uow.PolicyRepository.UpdatePolicy(policy);
-            return StatusCode(201);
-
+            return StatusCode(201);         
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePolicy(int policyId)
-        {
-            uow.PolicyRepository.DeletePolicy(policyId);
-            await uow.SaveAsync();
-            return Ok(policyId);
-        }
-
     }
 }

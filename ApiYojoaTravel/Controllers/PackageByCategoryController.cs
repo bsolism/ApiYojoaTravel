@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
@@ -13,42 +14,47 @@ namespace ApiYojoaTravel.Controllers
             this.uow = uow;
 
         }
-        [HttpGet]
-        public async Task<IActionResult> GetPackageByCategory()
+         [HttpGet]
+        public Task<IEnumerable<PackageByCategory>> GetPackageByCategory()
         {
-            var PackageByCategory = await uow.PackageByCategoryRepository.GetPackageByCategory();
-            return Ok(PackageByCategory);
+            return uow.PackageByCategoryApplication.GetPackageByCategory();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<PackageByCategory>> GetPackageByCategoryById(int packageByCategoryId)
+        public Task<ActionResult<PackageByCategory>> GetById(int id)
         {
-            return await uow.PackageByCategoryRepository.FindPackageByCategory(packageByCategoryId);
+            var packageByCategory = uow.PackageByCategoryApplication.FindPackageByCategory(id);
+            return packageByCategory;
         }
         [HttpPost]
         public async Task<IActionResult> AddPackageByCategory(PackageByCategory packageByCategory)
         {
-            uow.PackageByCategoryRepository.AddPackageByCategory(packageByCategory);
-            await uow.SaveAsync();
-            return StatusCode(201);
+            var activit = await uow.PackageByCategoryApplication.AddPackageByCategory(packageByCategory);
+            if (activit == null)
+            {
+                return BadRequest();
+            }
+            return Ok(activit);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePackageByCategory(int id, PackageByCategory packageByCategory)
         {
-            if (id != packageByCategory.Id)
+            var PackageByCategory = await uow.PackageByCategoryApplication.UpdatePackageByCategory(id, packageByCategory);
+            if (PackageByCategory == null)
+            {
+                return BadRequest();
+
+            }
+            return StatusCode(201);           
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePackageByCategory(int id)
+        {
+            var PackageByCategory = await uow.PackageByCategoryApplication.DeletePackageByCategory(id);
+            if (PackageByCategory == null)
             {
                 return BadRequest();
             }
-            await uow.PackageByCategoryRepository.UpdatePackageByCategory(packageByCategory);
-            return StatusCode(201);
-
+            return StatusCode(201);         
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePackageByCategory(int packageByCategoryId)
-        {
-            uow.PackageByCategoryRepository.DeletePackageByCategory(packageByCategoryId);
-            await uow.SaveAsync();
-            return Ok(packageByCategoryId);
-        }
-
     }
 }

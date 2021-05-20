@@ -19,7 +19,7 @@ namespace ApiYojoaTravel.DataContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=127.0.0.1; DataBase=ProjectYojoaTravel; Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-4CRQAA8\SQLEXPRESS; DataBase=ProjectYojoaTravel; Trusted_Connection=True;");
         }
     }
 }

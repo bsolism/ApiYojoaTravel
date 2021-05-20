@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
@@ -13,41 +14,47 @@ namespace ApiYojoaTravel.Controllers
             this.uow = uow;
 
         }
-        [HttpGet]
-        public async Task<IActionResult> GetCategory()
+         [HttpGet]
+        public Task<IEnumerable<Category>> GetCategory()
         {
-            var Category = await uow.CategoryRepository.GetCategory();
-            return Ok(Category);
+            return uow.CategoryApplication.GetCategory();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategoryById(int categoryId)
+        public Task<ActionResult<Category>> GetById(int id)
         {
-            return await uow.CategoryRepository.FindCategory(categoryId);
+            var category = uow.CategoryApplication.FindCategory(id);
+            return category;
         }
         [HttpPost]
         public async Task<IActionResult> AddCategory(Category category)
         {
-            uow.CategoryRepository.AddCategory(category);
-            await uow.SaveAsync();
-            return StatusCode(201);
+            var activit = await uow.CategoryApplication.AddCategory(category);
+            if (activit == null)
+            {
+                return BadRequest();
+            }
+            return Ok(activit);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCategory(int id, Category category)
         {
-            if (id != category.CategoryId)
+            var Category = await uow.CategoryApplication.UpdateCategory(id, category);
+            if (Category == null)
+            {
+                return BadRequest();
+
+            }
+            return StatusCode(201);           
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            var Category = await uow.CategoryApplication.DeleteCategory(id);
+            if (Category == null)
             {
                 return BadRequest();
             }
-            await uow.CategoryRepository.UpdateCategory(category);
-            return StatusCode(201);
-
-        }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory(int categoryId)
-        {
-            uow.CategoryRepository.DeleteCategory(categoryId);
-            await uow.SaveAsync();
-            return Ok(categoryId);
+            return StatusCode(201);         
         }
     }
 }

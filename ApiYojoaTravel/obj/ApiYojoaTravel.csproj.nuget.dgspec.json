@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {}
+    "C:\\Users\\Bernardo Solis\\Desktop\\Clases\\Vanguardia\\Proyecto_Calse\\Backend\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
+    "C:\\Users\\Bernardo Solis\\Desktop\\Clases\\Vanguardia\\Proyecto_Calse\\Backend\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
+        "projectUniqueName": "C:\\Users\\Bernardo Solis\\Desktop\\Clases\\Vanguardia\\Proyecto_Calse\\Backend\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
         "projectName": "ApiYojoaTravel",
-        "projectPath": "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
+        "projectPath": "C:\\Users\\Bernardo Solis\\Desktop\\Clases\\Vanguardia\\Proyecto_Calse\\Backend\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
         "packagesPath": "C:\\Users\\Bernardo Solis\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\obj\\",
+        "outputPath": "C:\\Users\\Bernardo Solis\\Desktop\\Clases\\Vanguardia\\Proyecto_Calse\\Backend\\ApiYojoaTravel\\ApiYojoaTravel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Bernardo Solis\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -93,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\PROGRAM FILES\\DOTNET\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

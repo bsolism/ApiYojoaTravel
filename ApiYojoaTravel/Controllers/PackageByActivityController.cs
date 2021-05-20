@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
@@ -13,42 +14,47 @@ namespace ApiYojoaTravel.Controllers
             this.uow = uow;
 
         }
-        [HttpGet]
-        public async Task<IActionResult> GetPackageByActivity()
+         [HttpGet]
+        public Task<IEnumerable<PackageByActivity>> GetPackageByActivity()
         {
-            var PackageByActivity = await uow.PackageByActivityRepository.GetPackageByActivity();
-            return Ok(PackageByActivity);
+            return uow.PackageByActivityApplication.GetPackageByActivity();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<PackageByActivity>> GetPackageByActivityById(int packageByActivityId)
+        public Task<ActionResult<PackageByActivity>> GetById(int id)
         {
-            return await uow.PackageByActivityRepository.FindPackageByActivity(packageByActivityId);
+            var packageByActivity = uow.PackageByActivityApplication.FindPackageByActivity(id);
+            return packageByActivity;
         }
         [HttpPost]
         public async Task<IActionResult> AddPackageByActivity(PackageByActivity packageByActivity)
         {
-            uow.PackageByActivityRepository.AddPackageByActivity(packageByActivity);
-            await uow.SaveAsync();
-            return StatusCode(201);
+            var activit = await uow.PackageByActivityApplication.AddPackageByActivity(packageByActivity);
+            if (activit == null)
+            {
+                return BadRequest();
+            }
+            return Ok(activit);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePackageByActivity(int id, PackageByActivity packageByActivity)
         {
-            if (id != packageByActivity.Id)
+            var PackageByActivity = await uow.PackageByActivityApplication.UpdatePackageByActivity(id, packageByActivity);
+            if (PackageByActivity == null)
+            {
+                return BadRequest();
+
+            }
+            return StatusCode(201);           
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePackageByActivity(int id)
+        {
+            var PackageByActivity = await uow.PackageByActivityApplication.DeletePackageByActivity(id);
+            if (PackageByActivity == null)
             {
                 return BadRequest();
             }
-            await uow.PackageByActivityRepository.UpdatePackageByActivity(packageByActivity);
-            return StatusCode(201);
-
+            return StatusCode(201);         
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePackageByActivity(int packageByActivityId)
-        {
-            uow.PackageByActivityRepository.DeletePackageByActivity(packageByActivityId);
-            await uow.SaveAsync();
-            return Ok(packageByActivityId);
-        }
-
     }
 }

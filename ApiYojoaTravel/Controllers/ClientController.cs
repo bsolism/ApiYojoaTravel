@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
@@ -13,41 +14,47 @@ namespace ApiYojoaTravel.Controllers
             this.uow = uow;
 
         }
-        [HttpGet]
-        public async Task<IActionResult> GetClient()
+         [HttpGet]
+        public Task<IEnumerable<Client>> GetClient()
         {
-            var Client = await uow.ClientRepository.GetClient();
-            return Ok(Client);
+            return uow.ClientApplication.GetClient();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Client>> GetClientById(int clientId)
+        public Task<ActionResult<Client>> GetById(int id)
         {
-            return await uow.ClientRepository.FindClient(clientId);
+            var client = uow.ClientApplication.FindClient(id);
+            return client;
         }
         [HttpPost]
         public async Task<IActionResult> AddClient(Client client)
         {
-            uow.ClientRepository.AddClient(client);
-            await uow.SaveAsync();
-            return StatusCode(201);
+            var activit = await uow.ClientApplication.AddClient(client);
+            if (activit == null)
+            {
+                return BadRequest();
+            }
+            return Ok(activit);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateClient(int id, Client client)
         {
-            if (id != client.ClientId)
+            var Client = await uow.ClientApplication.UpdateClient(id, client);
+            if (Client == null)
+            {
+                return BadRequest();
+
+            }
+            return StatusCode(201);           
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteClient(int id)
+        {
+            var Client = await uow.ClientApplication.DeleteClient(id);
+            if (Client == null)
             {
                 return BadRequest();
             }
-            await uow.ClientRepository.UpdateClient(client);
-            return StatusCode(201);
-
-        }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClient(int clientId)
-        {
-            uow.ClientRepository.DeleteClient(clientId);
-            await uow.SaveAsync();
-            return Ok(clientId);
+            return StatusCode(201);         
         }
     }
 }

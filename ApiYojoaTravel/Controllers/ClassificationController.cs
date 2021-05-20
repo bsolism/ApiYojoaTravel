@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
@@ -13,41 +14,47 @@ namespace ApiYojoaTravel.Controllers
             this.uow = uow;
 
         }
-        [HttpGet]
-        public async Task<IActionResult> GetClassification()
+         [HttpGet]
+        public Task<IEnumerable<Classification>> GetClassification()
         {
-            var Classification = await uow.ClassificationRepository.GetClassification();
-            return Ok(Classification);
+            return uow.ClassificationApplication.GetClassification();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Classification>> GetClassificationById(int classificationId)
+        public Task<ActionResult<Classification>> GetById(int id)
         {
-            return await uow.ClassificationRepository.FindClassification(classificationId);
+            var classification = uow.ClassificationApplication.FindClassification(id);
+            return classification;
         }
         [HttpPost]
         public async Task<IActionResult> AddClassification(Classification classification)
         {
-            uow.ClassificationRepository.AddClassification(classification);
-            await uow.SaveAsync();
-            return StatusCode(201);
+            var activit = await uow.ClassificationApplication.AddClassification(classification);
+            if (activit == null)
+            {
+                return BadRequest();
+            }
+            return Ok(activit);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateClassification(int id, Classification classification)
         {
-            if (id != classification.ClassificationId)
+            var Classification = await uow.ClassificationApplication.UpdateClassification(id, classification);
+            if (Classification == null)
+            {
+                return BadRequest();
+
+            }
+            return StatusCode(201);           
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteClassification(int id)
+        {
+            var Classification = await uow.ClassificationApplication.DeleteClassification(id);
+            if (Classification == null)
             {
                 return BadRequest();
             }
-            await uow.ClassificationRepository.UpdateClassification(classification);
-            return StatusCode(201);
-
-        }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClassification(int classificationId)
-        {
-            uow.ClassificationRepository.DeleteClassification(classificationId);
-            await uow.SaveAsync();
-            return Ok(classificationId);
+            return StatusCode(201);         
         }
     }
 }

@@ -8,17 +8,17 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using ApiYojoaTravel.Interfaces;
 
 namespace ApiYojoaTravel.DomainService
 {
-    public class CreateToken
+    public class CreateToken : ICreateToken
     {
-        private readonly User user;
+      
         private readonly IConfiguration configuration;
 
-        public CreateToken(User user, IConfiguration configuration)
+        public CreateToken(IConfiguration configuration)
         {
-            this.user = user;
             this.configuration = configuration;
         }
 
