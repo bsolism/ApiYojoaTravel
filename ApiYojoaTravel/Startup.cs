@@ -35,7 +35,7 @@ namespace ApiYojoaTravel
         public void ConfigureServices(IServiceCollection services)
         {
 
-
+            services.AddCors();
             services.AddDbContext<ApiDataContext>(ServiceLifetime.Transient);
             services.AddScoped<LoginResDTO>();
             services.AddScoped<IDomainUnitOfWork, DomainUnitOfWork>();
@@ -78,6 +78,8 @@ namespace ApiYojoaTravel
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseCors(builder => builder.WithOrigins("*").WithMethods("*").AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {
