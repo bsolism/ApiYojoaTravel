@@ -36,6 +36,7 @@ namespace ApiYojoaTravel.DomainService
         new CreateToken(configuration);
         public ILoginDomainService LoginDomainService =>
         new LoginDomainService(dc);
-
+        public IRegisterDomainService RegisterDomainService =>
+        new RegisterDomainService(dc);
     }
 }

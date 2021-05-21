@@ -8514,19 +8514,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bernardo Solis\\.nuget\\packages\\": {}
+    "C:\\Users\\anghe\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj",
+      "projectUniqueName": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj",
       "projectName": "TestYojoaTravel",
-      "projectPath": "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj",
-      "packagesPath": "C:\\Users\\Bernardo Solis\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\TestYojoaTravel\\obj\\",
+      "projectPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj",
+      "packagesPath": "C:\\Users\\anghe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Bernardo Solis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\anghe\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8540,8 +8540,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
-              "projectPath": "c:\\Users\\Bernardo Solis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj"
+            "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
+              "projectPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj"
             }
           }
         }
@@ -8596,7 +8596,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\PROGRAM FILES\\DOTNET\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -10,7 +10,7 @@ namespace ApiYojoaTravel.Interfaces
     public interface IUserApplication
     {
         Task<IEnumerable<User>> GetUser();
-        void AddUser(User User);
+        Task AddUser(User User);
         void DeleteUser(int UserId);
         Task UpdateUser(User User);
         Task<User> FindUser(LoginReqDTO UserId);

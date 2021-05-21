@@ -34,9 +34,9 @@ namespace ApiYojoaTravel
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            
-            services.AddScoped<ApiDataContext>();
+
+
+            services.AddDbContext<ApiDataContext>(ServiceLifetime.Transient);
             services.AddScoped<LoginResDTO>();
             services.AddScoped<IDomainUnitOfWork, DomainUnitOfWork>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

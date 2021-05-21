@@ -23,9 +23,10 @@ namespace ApiYojoaTravel.ApplicationServices
         {
             return await dc.User.ToListAsync();
         }
-        public void AddUser(User User)
+        public async Task AddUser(User User)
         {
-            dc.User.AddAsync(User);
+            await dc.User.AddAsync(User);
+            await dc.SaveChangesAsync();
         }
         public void DeleteUser(int UserId)
         {

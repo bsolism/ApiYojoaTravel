@@ -15,5 +15,6 @@ namespace ApiYojoaTravel.DomainService
         IPolicyDomainService PolicyDomainService { get; }
         ICreateToken CreateToken { get; }
         ILoginDomainService LoginDomainService {get;}
+        IRegisterDomainService RegisterDomainService { get; }
     }
 }

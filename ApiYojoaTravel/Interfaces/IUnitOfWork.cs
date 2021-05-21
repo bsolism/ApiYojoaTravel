@@ -1,3 +1,4 @@
+using ApiYojoaTravel.Interfaces.InterfaceApplication;
 using System.Threading.Tasks;
 
 namespace ApiYojoaTravel.Interfaces
@@ -15,8 +16,9 @@ namespace ApiYojoaTravel.Interfaces
         IUserApplication UserApplication { get; }
         IActivityApplication ActivityApplication { get; }
         ILoginApplication LoginApplication { get; }
+        IRegisterApplication RegisterApplication { get; }
 
-        
+
 
         Task<bool> SaveAsync();
     }
