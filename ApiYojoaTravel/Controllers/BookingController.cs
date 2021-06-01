@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
@@ -13,41 +14,47 @@ namespace ApiYojoaTravel.Controllers
             this.uow = uow;
 
         }
-        [HttpGet]
-        public async Task<IActionResult> GetBooking()
+         [HttpGet]
+        public Task<IEnumerable<Booking>> GetBooking()
         {
-            var Booking = await uow.BookingRepository.GetBooking();
-            return Ok(Booking);
+            return uow.BookingApplication.GetBooking();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Booking>> GetBookingById(int bookingId)
+        public Task<ActionResult<Booking>> GetById(int id)
         {
-            return await uow.BookingRepository.FindBooking(bookingId);
+            var booking = uow.BookingApplication.FindBooking(id);
+            return booking;
         }
         [HttpPost]
         public async Task<IActionResult> AddBooking(Booking booking)
         {
-            uow.BookingRepository.AddBooking(booking);
-            await uow.SaveAsync();
-            return StatusCode(201);
+            var activit = await uow.BookingApplication.AddBooking(booking);
+            if (activit == null)
+            {
+                return BadRequest();
+            }
+            return Ok(activit);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBooking(int id, Booking booking)
         {
-            if (id != booking.BookingId)
+            var Booking = await uow.BookingApplication.UpdateBooking(id, booking);
+            if (Booking == null)
+            {
+                return BadRequest();
+
+            }
+            return StatusCode(201);           
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBooking(int id)
+        {
+            var Booking = await uow.BookingApplication.DeleteBooking(id);
+            if (Booking == null)
             {
                 return BadRequest();
             }
-            await uow.BookingRepository.UpdateBooking(booking);
-            return StatusCode(201);
-
-        }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBooking(int bookingId)
-        {
-            uow.BookingRepository.DeleteBooking(bookingId);
-            await uow.SaveAsync();
-            return Ok(bookingId);
+            return StatusCode(201);         
         }
     }
 }

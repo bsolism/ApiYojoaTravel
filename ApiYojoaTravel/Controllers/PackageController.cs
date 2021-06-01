@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
@@ -13,41 +14,47 @@ namespace ApiYojoaTravel.Controllers
             this.uow = uow;
 
         }
-        [HttpGet]
-        public async Task<IActionResult> GetPackage()
+         [HttpGet]
+        public Task<IEnumerable<Package>> GetPackage()
         {
-            var Package = await uow.PackageRepository.GetPackage();
-            return Ok(Package);
+            return uow.PackageApplication.GetPackage();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Package>> GetPackageById(int packageId)
+        public Task<ActionResult<Package>> GetById(int id)
         {
-            return await uow.PackageRepository.FindPackage(packageId);
+            var package = uow.PackageApplication.FindPackage(id);
+            return package;
         }
         [HttpPost]
         public async Task<IActionResult> AddPackage(Package package)
         {
-            uow.PackageRepository.AddPackage(package);
-            await uow.SaveAsync();
-            return StatusCode(201);
+            var activit = await uow.PackageApplication.AddPackage(package);
+            if (activit == null)
+            {
+                return BadRequest();
+            }
+            return Ok(activit);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePackage(int id, Package package)
         {
-            if (id != package.PackageId)
+            var Package = await uow.PackageApplication.UpdatePackage(id, package);
+            if (Package == null)
+            {
+                return BadRequest();
+
+            }
+            return StatusCode(201);           
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePackage(int id)
+        {
+            var Package = await uow.PackageApplication.DeletePackage(id);
+            if (Package == null)
             {
                 return BadRequest();
             }
-            await uow.PackageRepository.UpdatePackage(package);
-            return StatusCode(201);
-
-        }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePackage(int packageId)
-        {
-            uow.PackageRepository.DeletePackage(packageId);
-            await uow.SaveAsync();
-            return Ok(packageId);
+            return StatusCode(201);         
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
@@ -14,40 +15,46 @@ namespace ApiYojoaTravel.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> GetActivity()
+        public Task<IEnumerable<Activity>> GetActivity()
         {
-            var Activity = await uow.ActivityRepository.GetActivity();
-            return Ok(Activity);
+            return uow.ActivityApplication.GetActivity();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Activity>> GetActivityById(int activityId)
+        public Task<ActionResult<Activity>> GetById(int id)
         {
-            return await uow.ActivityRepository.FindActivity(activityId);
+            var activity = uow.ActivityApplication.FindActivity(id);
+            return activity;
         }
         [HttpPost]
         public async Task<IActionResult> AddActivity(Activity activity)
         {
-            uow.ActivityRepository.AddActivity(activity);
-            await uow.SaveAsync();
-            return StatusCode(201);
+            var activit = await uow.ActivityApplication.AddActivity(activity);
+            if (activit == null)
+            {
+                return BadRequest();
+            }
+            return Ok(activit);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateActivity(int id, Activity activity)
         {
-            if (id != activity.ActivityId)
+            var Activity = await uow.ActivityApplication.UpdateActivity(id, activity);
+            if (Activity == null)
+            {
+                return BadRequest();
+
+            }
+            return StatusCode(201);           
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteActivity(int id)
+        {
+            var Activity = await uow.ActivityApplication.DeleteActivity(id);
+            if (Activity == null)
             {
                 return BadRequest();
             }
-            await uow.ActivityRepository.UpdateActivity(activity);
-            return StatusCode(201);
-
-        }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteActivity(int activityId)
-        {
-            uow.ActivityRepository.DeleteActivity(activityId);
-            await uow.SaveAsync();
-            return Ok(activityId);
+            return StatusCode(201);         
         }
     }
 }
