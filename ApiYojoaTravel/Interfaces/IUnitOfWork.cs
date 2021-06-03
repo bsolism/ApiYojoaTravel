@@ -13,13 +13,12 @@ namespace ApiYojoaTravel.Interfaces
         IPackageByActivityApplication PackageByActivityApplication { get; }
         IPackageByCategoryApplication PackageByCategoryApplication { get; }
         IPolicyApplication PolicyApplication { get; }
-        IUserApplication UserApplication { get; }
+        IUserApplicationServices UserApplicationServices { get; }
         IActivityApplication ActivityApplication { get; }
         ILoginApplication LoginApplication { get; }
         IRegisterApplication RegisterApplication { get; }
+        IUserApplication UserApplication { get; }
 
-
-
-        Task<bool> SaveAsync();
+      
     }
 }

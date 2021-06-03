@@ -1,6 +1,7 @@
 ﻿using ApiYojoaTravel.DataContext;
 using ApiYojoaTravel.DTO;
 using ApiYojoaTravel.Interfaces;
+using ApiYojoaTravel.Interfaces.InterfaceApplication;
 using ApiYojoaTravel.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ApiYojoaTravel.ApplicationServices
 {
-    public class UserApplicationServices: IUserApplication
+    public class UserApplicationServices: IUserApplicationServices
     {
         private readonly ApiDataContext dc;
 

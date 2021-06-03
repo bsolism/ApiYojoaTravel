@@ -1,7 +1,9 @@
 ﻿using ApiYojoaTravel.DataContext;
 using ApiYojoaTravel.DomainService;
+using ApiYojoaTravel.DTO;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,9 +17,12 @@ namespace ApiYojoaTravel.ApplicationServices
     {
         private readonly ApiDataContext dc;
         private readonly IDomainUnitOfWork uow;
-        public ActivityApplication(ApiDataContext dc, IDomainUnitOfWork uow)
+        private readonly IMapper mapper;
+
+        public ActivityApplication(ApiDataContext dc, IDomainUnitOfWork uow, IMapper mapper)
         {
             this.uow = uow;
+            this.mapper = mapper;
             this.dc = dc;
 
         }
@@ -35,12 +40,20 @@ namespace ApiYojoaTravel.ApplicationServices
             return null;
 
         }
-        public async Task<IActionResult> AddActivity(Activity activity)
+        public async Task<IEnumerable<Activity>> FindActivityForUser(int userId)
+        {
+            return await dc.Activity.Where(x=> x.ClientId== userId).ToListAsync();
+
+        }
+        public async Task<IActionResult> AddActivity(ActivityDTO activity)
         {
             var RequiredField = uow.ActivityDomainService.PostActivity(activity);
-            if (!RequiredField)
+            var CreateImage = uow.ActivityDomainService.UploadImage(activity);
+            
+            if (!RequiredField && CreateImage != null)
             {
-                dc.Activity.Add(activity);
+                var activityModel = mapper.Map<Activity>(activity);
+                dc.Activity.Add(activityModel);
                 await dc.SaveChangesAsync();
                 return new ObjectResult(activity);
             }

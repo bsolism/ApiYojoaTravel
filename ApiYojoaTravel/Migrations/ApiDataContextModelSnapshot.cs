@@ -26,6 +26,9 @@ namespace ApiYojoaTravel.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -44,7 +47,12 @@ namespace ApiYojoaTravel.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int?>("UserClientId")
+                        .HasColumnType("int");
+
                     b.HasKey("ActivityId");
+
+                    b.HasIndex("UserClientId");
 
                     b.ToTable("Activity");
                 });
@@ -279,6 +287,15 @@ namespace ApiYojoaTravel.Migrations
                     b.HasKey("ClientId");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("ApiYojoaTravel.Models.Activity", b =>
+                {
+                    b.HasOne("ApiYojoaTravel.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserClientId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApiYojoaTravel.Models.Booking", b =>

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ApiYojoaTravel.DTO;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -25,8 +26,14 @@ namespace ApiYojoaTravel.Controllers
             var activity = uow.ActivityApplication.FindActivity(id);
             return activity;
         }
+        [HttpGet("user/{id}")]
+        public Task<IEnumerable<Activity>> GetByUserId(int id)
+        {
+            return uow.ActivityApplication.FindActivityForUser(id);
+            
+        }
         [HttpPost]
-        public async Task<IActionResult> AddActivity(Activity activity)
+        public async Task<ActionResult<ActivityDTO>> AddActivity([FromForm]ActivityDTO activity)
         {
             var activit = await uow.ActivityApplication.AddActivity(activity);
             if (activit == null)

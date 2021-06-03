@@ -4,6 +4,7 @@ using ApiYojoaTravel.DomainService;
 using ApiYojoaTravel.DTO;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Interfaces.InterfaceApplication;
+using AutoMapper;
 
 namespace ApiYojoaTravel.DataContext
 {
@@ -12,11 +13,13 @@ namespace ApiYojoaTravel.DataContext
         private readonly ApiDataContext dc;
         private readonly IDomainUnitOfWork duow;
         private readonly LoginResDTO loginResDTO;
+        private readonly IMapper mapper;
 
-        public UnitOfWork(ApiDataContext dc, IDomainUnitOfWork duow, LoginResDTO loginResDTO)
+        public UnitOfWork(ApiDataContext dc, IDomainUnitOfWork duow, LoginResDTO loginResDTO, IMapper mapper)
         {
             this.duow = duow;
             this.loginResDTO = loginResDTO;
+            this.mapper = mapper;
             this.dc = dc;
 
         }
@@ -36,19 +39,19 @@ namespace ApiYojoaTravel.DataContext
         new PackageByCategoryApplication(dc, duow);
         public IPolicyApplication PolicyApplication =>
         new PolicyApplication(dc, duow);
-        public IUserApplication UserApplication =>
+        public IUserApplicationServices UserApplicationServices =>
         new UserApplicationServices(dc);
         public IActivityApplication ActivityApplication =>
-        new ActivityApplication(dc, duow);
+        new ActivityApplication(dc, duow, mapper);
         public ILoginApplication LoginApplication =>
         new LoginApplication(loginResDTO, duow);
         public IRegisterApplication RegisterApplication =>
             new RegisterApplication(duow, loginResDTO);
+        
+        public IUserApplication UserApplication =>
+        new UserApplication(dc, duow);
 
 
-        public async Task<bool> SaveAsync()
-        {
-            return await dc.SaveChangesAsync() > 0;
-        }
+      
     }
 }
