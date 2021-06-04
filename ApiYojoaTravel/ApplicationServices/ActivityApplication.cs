@@ -1,7 +1,9 @@
 ﻿using ApiYojoaTravel.DataContext;
 using ApiYojoaTravel.DomainService;
+using ApiYojoaTravel.DTO;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,9 +17,12 @@ namespace ApiYojoaTravel.ApplicationServices
     {
         private readonly ApiDataContext dc;
         private readonly IDomainUnitOfWork uow;
-        public ActivityApplication(ApiDataContext dc, IDomainUnitOfWork uow)
+        private readonly IMapper mapper;
+
+        public ActivityApplication(ApiDataContext dc, IDomainUnitOfWork uow, IMapper mapper)
         {
             this.uow = uow;
+            this.mapper = mapper;
             this.dc = dc;
 
         }
@@ -35,12 +40,31 @@ namespace ApiYojoaTravel.ApplicationServices
             return null;
 
         }
-        public async Task<IActionResult> AddActivity(Activity activity)
+        public async Task<IEnumerable<Activity>> FindActivityForUser(int userId)
+        {
+            var packageByActivity= await dc.PackageByActivity.
+            Include(x=> x.Activity).
+            Include(z=> z.Package).
+            Join(dc.Booking, 
+            pbi => pbi.PackageId, 
+            book => book.PackageId, 
+            (pbi, book)=> new {pbi, book}).
+            Where(i=> i.book.ClientId==userId)
+            .ToListAsync();
+
+            var activities = uow.ActivityDomainService.FindActivityForUser(packageByActivity);          
+            return activities;
+
+        }
+        public async Task<IActionResult> AddActivity(ActivityDTO activity)
         {
             var RequiredField = uow.ActivityDomainService.PostActivity(activity);
-            if (!RequiredField)
+            var CreateImage = uow.ActivityDomainService.UploadImage(activity);
+            
+            if (!RequiredField && CreateImage != null)
             {
-                dc.Activity.Add(activity);
+                var activityModel = mapper.Map<Activity>(activity);
+                dc.Activity.Add(activityModel);
                 await dc.SaveChangesAsync();
                 return new ObjectResult(activity);
             }

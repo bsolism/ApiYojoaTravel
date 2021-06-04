@@ -1,5 +1,6 @@
 using ApiYojoaTravel.DataContext;
 using ApiYojoaTravel.Interfaces;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
 namespace ApiYojoaTravel.DomainService
@@ -8,14 +9,17 @@ namespace ApiYojoaTravel.DomainService
     {
         private readonly ApiDataContext dc;
         private readonly IConfiguration configuration;
-        public DomainUnitOfWork(ApiDataContext dc, IConfiguration configuration)
+        private readonly IWebHostEnvironment environment;
+
+        public DomainUnitOfWork(ApiDataContext dc, IConfiguration configuration, IWebHostEnvironment environment)
         {
             this.configuration = configuration;
+            this.environment = environment;
             this.dc = dc;
 
         }
         public IActivityDomainService ActivityDomainService =>
-        new ActivityDomainService(dc);
+        new ActivityDomainService(dc, environment);
         public IBookingDomainservice BookingDomainService =>
         new BookingDomainService(dc);
         public ICategoryDomainService CategoryDomainService =>
@@ -38,5 +42,7 @@ namespace ApiYojoaTravel.DomainService
         new LoginDomainService(dc);
         public IRegisterDomainService RegisterDomainService =>
         new RegisterDomainService(dc);
+        public IUserDomainservice UserDomainService =>
+        new UserDomainService(dc);
     }
 }

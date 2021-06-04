@@ -1,4 +1,5 @@
 ﻿using ApiYojoaTravel.DomainService;
+using ApiYojoaTravel.DTO;
 using ApiYojoaTravel.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -17,7 +18,7 @@ namespace TestYojoaTravel
         public void PostActividad_Validated()
         {
             //Arrange
-            Activity activity = new Activity
+            ActivityDTO activity = new ActivityDTO
             {
                 Name = "Caminata",
                 Description = "Caminar senderos",

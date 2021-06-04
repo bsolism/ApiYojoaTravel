@@ -10,15 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiYojoaTravel.Migrations
 {
     [DbContext(typeof(ApiDataContext))]
-    [Migration("20210502211820_CreateTable")]
-    partial class CreateTable
+    [Migration("20210602224507_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.5")
+                .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ApiYojoaTravel.Models.Activity", b =>
@@ -27,6 +27,9 @@ namespace ApiYojoaTravel.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -46,7 +49,12 @@ namespace ApiYojoaTravel.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int?>("UserClientId")
+                        .HasColumnType("int");
+
                     b.HasKey("ActivityId");
+
+                    b.HasIndex("UserClientId");
 
                     b.ToTable("Activity");
                 });
@@ -281,6 +289,15 @@ namespace ApiYojoaTravel.Migrations
                     b.HasKey("ClientId");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("ApiYojoaTravel.Models.Activity", b =>
+                {
+                    b.HasOne("ApiYojoaTravel.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserClientId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApiYojoaTravel.Models.Booking", b =>

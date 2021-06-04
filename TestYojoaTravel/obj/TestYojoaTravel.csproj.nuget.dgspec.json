@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj": {}
+    "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
+    "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
+        "projectUniqueName": "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
         "projectName": "ApiYojoaTravel",
-        "projectPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
-        "packagesPath": "C:\\Users\\anghe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\obj\\",
+        "projectPath": "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
+        "packagesPath": "C:\\Users\\bsolis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\anghe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bsolis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[5.0.6, )"
@@ -97,17 +101,17 @@
         }
       }
     },
-    "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj": {
+    "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj",
+        "projectUniqueName": "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj",
         "projectName": "TestYojoaTravel",
-        "projectPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj",
-        "packagesPath": "C:\\Users\\anghe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\obj\\",
+        "projectPath": "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj",
+        "packagesPath": "C:\\Users\\bsolis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\TestYojoaTravel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\anghe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bsolis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -121,8 +125,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
-                "projectPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj"
+              "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
+                "projectPath": "C:\\Users\\bsolis\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj"
               }
             }
           }

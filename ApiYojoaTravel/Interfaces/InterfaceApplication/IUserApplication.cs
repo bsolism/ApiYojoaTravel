@@ -1,18 +1,16 @@
-﻿using ApiYojoaTravel.DTO;
-using ApiYojoaTravel.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using ApiYojoaTravel.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ApiYojoaTravel.Interfaces
 {
     public interface IUserApplication
     {
-        Task<IEnumerable<User>> GetUser();
-        Task AddUser(User User);
-        void DeleteUser(int UserId);
-        Task UpdateUser(User User);
-        Task<User> FindUser(LoginReqDTO UserId);
+       Task<IEnumerable<User>> GetUser();
+        Task<ActionResult<User>> FindUser(int UserId);
+        Task<IActionResult> AddUser(User User);
+        Task<ActionResult> UpdateUser(int id, User User);
+        Task<IActionResult> DeleteUser(int UserId);
     }
 }
