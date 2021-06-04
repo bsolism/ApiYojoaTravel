@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ApiYojoaTravel.DomainService
@@ -26,6 +28,42 @@ namespace ApiYojoaTravel.DomainService
         {
             
         }
+         public Activity DomainDeleteActivity(int id)
+        {
+            var Activity = dc.Activity.Find(id);
+            if (Activity == null)
+            {
+                return null;
+            }
+            return Activity;
+        }
+        public async Task<ActionResult<Activity>> FindActivity(int ActivityId)
+        {
+            var Activity = await dc.Activity.FirstOrDefaultAsync(x => x.ActivityId == ActivityId);
+            return Activity;
+        }
+        public IEnumerable<Activity> FindActivityForUser(IEnumerable<dynamic> data)
+        {
+            List<Activity> actividad= new();
+                      
+            foreach(var i in data)
+            {
+                Activity act= new();
+                act.ActivityId= i.pbi.Activity.ActivityId;
+                act.Name= i.pbi.Activity.Name;
+                act.Description= i.pbi.Activity.Description;
+                act.InitTime= i.pbi.Activity.InitTime;
+                act.EndTime= i.pbi.Activity.EndTime;
+                act.Price= i.pbi.Activity.Price;
+                act.ImageURL= i.pbi.Activity.ImageURL;
+                act.ClientId=i.pbi.Activity.ClientId;
+                actividad.Add(act);
+
+            }
+            return  actividad;
+
+        }
+       
         public bool PostActivity(ActivityDTO activity)
         {
             if(activity.Name==null) return true;
@@ -60,24 +98,7 @@ namespace ApiYojoaTravel.DomainService
 
             return null;
         }
-        public async Task<ActionResult<Activity>> FindActivity(int ActivityId)
-        {
-            var Activity = await dc.Activity.FirstOrDefaultAsync(x => x.ActivityId == ActivityId);
-            return Activity;
-        }
-        public async Task<ActionResult<Activity>> FindActivityForUser(int userId)
-        {
-            var Activity = await dc.Activity.FirstOrDefaultAsync(x => x.ClientId == userId);
-            return Activity;
-        }
-        public Activity DomainDeleteActivity(int id)
-        {
-            var Activity = dc.Activity.Find(id);
-            if (Activity == null)
-            {
-                return null;
-            }
-            return Activity;
-        }
+        
+       
     }
 }

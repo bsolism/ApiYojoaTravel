@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiYojoaTravel.DTO;
 using ApiYojoaTravel.Models;
@@ -10,7 +11,7 @@ namespace ApiYojoaTravel.Interfaces
     {
         bool PostActivity(ActivityDTO activity);
         Task<ActionResult<Activity>> FindActivity(int ActivityId);
-        Task<ActionResult<Activity>> FindActivityForUser(int ActivityId);
+        IEnumerable<Activity> FindActivityForUser(IEnumerable<dynamic> data);
         ActivityDTO UploadImage(ActivityDTO activityDto);
         Activity DomainDeleteActivity(int id);
     }
