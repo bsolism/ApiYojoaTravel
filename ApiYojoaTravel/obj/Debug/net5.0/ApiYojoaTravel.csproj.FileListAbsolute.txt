@@ -349,3 +349,4 @@ C:\Users\bsolis\source\repos\ApiYojoaTravel\ApiYojoaTravel\obj\Debug\net5.0\ApiY
 C:\Users\bsolis\source\repos\ApiYojoaTravel\ApiYojoaTravel\obj\Debug\net5.0\ApiYojoaTravel.genruntimeconfig.cache
 C:\Users\bsolis\source\repos\ApiYojoaTravel\ApiYojoaTravel\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\bsolis\source\repos\ApiYojoaTravel\ApiYojoaTravel\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\bsolis\source\repos\ApiYojoaTravel\ApiYojoaTravel\obj\Debug\net5.0\ApiYojoaTravel.csprojAssemblyReference.cache

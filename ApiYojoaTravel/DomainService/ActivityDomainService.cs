@@ -28,19 +28,19 @@ namespace ApiYojoaTravel.DomainService
         }
         public bool PostActivity(ActivityDTO activity)
         {
-            bool requiredField;
-            requiredField = (activity.Name == null) ? true : false;
-            requiredField = (activity.Description == null) ? true : false;
-            requiredField = (activity.InitTime == new DateTime(0)) ? true : false;
-            requiredField = (activity.EndTime == new DateTime(0)) ? true : false;
-            requiredField = (activity.Price == 0) ? true : false;
-            requiredField = (activity.ImageURL == null) ? true : false;
-            requiredField = (activity.File == null) ? true : false;
-            return requiredField;
+            if(activity.Name==null) return true;
+            if(activity.Description==null) return true;
+            if(activity.InitTime == new DateTime(0)) return true;
+            if(activity.EndTime == new DateTime(0)) return true;
+            if(activity.Price == 0) return true;
+            if(activity.ImageURL == null) return true;
+            if(activity.File == null) return true;
+            return false;
+           
         }
         public ActivityDTO UploadImage(ActivityDTO activityDto)
         {
-            string guidImagen = null;
+            string guidImagen;
             if (activityDto.File != null)
             {
                 if (!Directory.Exists(environment.WebRootPath + "\\activity\\"))

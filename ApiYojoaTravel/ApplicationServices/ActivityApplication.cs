@@ -42,7 +42,34 @@ namespace ApiYojoaTravel.ApplicationServices
         }
         public async Task<IEnumerable<Activity>> FindActivityForUser(int userId)
         {
-            return await dc.Activity.Where(x=> x.ClientId== userId).ToListAsync();
+            List<Activity> actividad= new();
+            
+            var packageByActivity= await dc.PackageByActivity.
+            Include(x=> x.Activity).
+            Include(z=> z.Package).
+            Join(dc.Booking, 
+            pbi => pbi.PackageId, 
+            book => book.PackageId, 
+            (pbi, book)=> new {pbi, book}).
+            Where(i=> i.book.ClientId==userId)
+            .ToListAsync();
+            
+            foreach(var i in packageByActivity)
+            {
+                Activity act= new();
+                act.ActivityId= i.pbi.Activity.ActivityId;
+                act.Name= i.pbi.Activity.Name;
+                act.Description= i.pbi.Activity.Description;
+                act.InitTime= i.pbi.Activity.InitTime;
+                act.EndTime= i.pbi.Activity.EndTime;
+                act.Price= i.pbi.Activity.Price;
+                act.ImageURL= i.pbi.Activity.ImageURL;
+                act.ClientId=i.pbi.Activity.ClientId;
+                actividad.Add(act);
+
+            }
+            return actividad;
+            //return await dc.Activity.Where(x=> x.ClientId== userId).ToListAsync();
 
         }
         public async Task<IActionResult> AddActivity(ActivityDTO activity)
