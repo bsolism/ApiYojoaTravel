@@ -1,7 +1,7 @@
-﻿using ApiYojoaTravel.DomainService;
+﻿using System.Threading.Tasks;
+using ApiYojoaTravel.DomainService;
 using ApiYojoaTravel.DTO;
 using ApiYojoaTravel.Interfaces;
-using System.Threading.Tasks;
 
 namespace ApiYojoaTravel.ApplicationServices
 {
