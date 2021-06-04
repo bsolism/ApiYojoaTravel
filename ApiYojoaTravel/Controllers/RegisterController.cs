@@ -29,9 +29,14 @@ namespace ApiYojoaTravel.Controllers
             {
                 return BadRequest();
             }
+            else 
+            { 
+               
             var user = uow.RegisterApplication.Convert(registerReqDTO);
+               
             await uow.UserApplication.AddUser(user);
             return Ok(register);
+                }
         }
     }
 }

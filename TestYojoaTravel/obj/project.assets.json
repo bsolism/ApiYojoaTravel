@@ -8514,20 +8514,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\anghe\\.nuget\\packages\\": {}
+    "C:\\Users\\w7\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj",
+      "projectUniqueName": "C:\\Users\\w7\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel2\\TestYojoaTravel\\TestYojoaTravel.csproj",
       "projectName": "TestYojoaTravel",
-      "projectPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\TestYojoaTravel.csproj",
-      "packagesPath": "C:\\Users\\anghe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\TestYojoaTravel\\obj\\",
+      "projectPath": "C:\\Users\\w7\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel2\\TestYojoaTravel\\TestYojoaTravel.csproj",
+      "packagesPath": "C:\\Users\\w7\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\w7\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel2\\TestYojoaTravel\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\anghe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\w7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -8540,8 +8548,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
-              "projectPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj"
+            "C:\\Users\\w7\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel2\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
+              "projectPath": "C:\\Users\\w7\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel2\\ApiYojoaTravel\\ApiYojoaTravel.csproj"
             }
           }
         }

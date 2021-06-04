@@ -1,6 +1,7 @@
 ﻿using ApiYojoaTravel.DataContext;
 using ApiYojoaTravel.DomainService;
 using ApiYojoaTravel.DTO;
+using ApiYojoaTravel.Helper;
 using ApiYojoaTravel.Interfaces;
 using ApiYojoaTravel.Interfaces.InterfaceApplication;
 using ApiYojoaTravel.Models;
@@ -31,14 +32,16 @@ namespace ApiYojoaTravel.ApplicationServices
             {
                 return null;
             }
-
+            var hash = HashHelper.Hash(registerReqDTO.Password);
+            
             User newUser = new User
             {
                 Name = registerReqDTO.Name,
                 Email = registerReqDTO.Email,
-                Password = registerReqDTO.Password,
+                Password = hash.Password,
                 PhoneNumber = registerReqDTO.PhoneNumber,
-                UserName = registerReqDTO.Email
+                UserName = registerReqDTO.Email,
+                Sal=hash.Salt
             };
 
             loginResDTO.UserName = newUser.UserName;
@@ -49,13 +52,15 @@ namespace ApiYojoaTravel.ApplicationServices
 
         public User Convert(RegisterReqDTO registerReqDTO)
         {
+            var hash = HashHelper.Hash(registerReqDTO.Password);
             User newU = new User
             {
                 Name = registerReqDTO.Name,
                 Email = registerReqDTO.Email,
-                Password = registerReqDTO.Password,
+                Password = hash.Password,
                 PhoneNumber = registerReqDTO.PhoneNumber,
-                UserName = registerReqDTO.Email
+                UserName = registerReqDTO.Email,
+                Sal = hash.Salt
             };
             return newU;
         }

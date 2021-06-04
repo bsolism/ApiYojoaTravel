@@ -1,21 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {}
+    "C:\\Users\\w7\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel2\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
+    "C:\\Users\\w7\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel2\\ApiYojoaTravel\\ApiYojoaTravel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
+        "projectUniqueName": "C:\\Users\\w7\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel2\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
         "projectName": "ApiYojoaTravel",
-        "projectPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
-        "packagesPath": "C:\\Users\\anghe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anghe\\Desktop\\Proyecto Vanguardia\\ApiYojoaTravel\\ApiYojoaTravel\\obj\\",
+        "projectPath": "C:\\Users\\w7\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel2\\ApiYojoaTravel\\ApiYojoaTravel.csproj",
+        "packagesPath": "C:\\Users\\w7\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\w7\\source\\repos\\ApiYojoaTravel\\ApiYojoaTravel2\\ApiYojoaTravel\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\anghe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\w7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"

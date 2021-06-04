@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ApiYojoaTravel",
-    "\\ApiYojoaTravel\\DataContext"
+    "\\ApiYojoaTravel"
   ],
-  "SelectedNode": "\\ApiYojoaTravel\\DataContext\\ApiDataContext.cs",
+  "SelectedNode": "\\ApiYojoaTravel\\Models",
   "PreviewInSolutionExplorer": false
 }
